@@ -55,7 +55,11 @@ pip3 install pnnx
 pip show pnnx
 ```
 
+<<<<<<< HEAD
 ![image-20250905094125596](pic/install_pnnx.png)
+=======
+![image-20250905094125596](pic\install_pnnx.png)
+>>>>>>> c9dd0dc0beca1b607d7f2635030a3606c3d28c77
 
 目录结构和transpt.py代码如下：
 
