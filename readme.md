@@ -28,7 +28,7 @@
 
 这里使用的网络是pytorch的，参数保存在了net.pt文件里，做轻量化移植需要使用ncnn框架，要做模型的的转换
 
-ncnn的wiki给了模型转换教程：https://opendeep.wiki/Tencent/ncnn/model-conversion。ncnn推荐使用pnnx进行转换，下面实现。
+ncnn的wiki给了模型转换教程：https://opendeep.wiki/Tencent/ncnn/model-conversion ncnn推荐使用pnnx进行转换，下面实现。
 
 - 重新保存net.pt
 
