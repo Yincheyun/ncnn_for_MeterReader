@@ -24,7 +24,7 @@
 
 #### 一个训练好的网络
 
-这里选的是：https://github.com/HibikiJie/ReadMeter给出的u2net。
+这里选的是：https://github.com/HibikiJie/ReadMeter 给出的u2net
 
 这里使用的网络是pytorch的，参数保存在了net.pt文件里，做轻量化移植需要使用ncnn框架，要做模型的的转换
 
