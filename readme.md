@@ -55,11 +55,11 @@ pip3 install pnnx
 pip show pnnx
 ```
 
-![image-20250905094125596](.\pic\install_pnnx.png)
+![image-20250905094125596](pic/install_pnnx.png)
 
 目录结构和transpt.py代码如下：
 
-![image-20250905095859727](.\pic\catalog.png)
+![image-20250905095859727](pic/catalog.png)
 
 ```python
 #转换代码
@@ -91,7 +91,7 @@ pnnx ./model.pt inputshape=[1,3,416,416]
 
 结果如下：
 
-![image-20250905101118058](.\pic\trans_result.png)
+![image-20250905101118058](pic/trans_result.png)
 
 - 重命名一下（可选）
 
@@ -117,11 +117,11 @@ ncnn-20250503-android-vulkan-shared.zip
 
 **opencv官网：https://opencv.org/releases/**
 
-![image-20250905104328925](.\pic\download_cv.png)
+![image-20250905104328925](pic/download_cv.png)
 
 下载后是这俩文件，一个解压一个安装，记下路径就行
 
-![image-20250905110512854](.\pic\cv.png)
+![image-20250905110512854](pic/cv.png)
 
 我的路径：
 
@@ -171,11 +171,11 @@ vs2022在ncnntest目录创建工程。然后添加上一步得到的ncnn-windows
 
 新建一个opencv属性表和ncnn属性表。（也可以变成一个，但是有的项目可以不需要opencv的，所以做环境拆分）**创建时下面有个路径选择，记住！！！方便以后复用（也有可能再也不用QAQ）**
 
-![image-20250905114447875](.\pic\Add_Property.png)
+![image-20250905114447875](pic/Add_Property.png)
 
 双击opencv_windows属性表，或者右键-->属性进入这个页面。
 
-![image-20250905123548382](.\pic\cv_include.png)
+![image-20250905123548382](pic/cv_include.png)
 
 添加的路径如下：
 
@@ -187,7 +187,7 @@ E:\Imgseg\libs\opencv\build\include
 E:\Imgseg\libs\opencv\build\x64\vc16\lib
 ```
 
-![image-20250905122909263](.\pic\cv_include_input.png)
+![image-20250905122909263](pic/cv_include_input.png)
 
 ```bash
 #附加依赖项
@@ -227,11 +227,11 @@ int main() {
 
 运行时提示会报错。
 
-![image-20250905124200670](.\pic\err.png)
+![image-20250905124200670](pic/err.png)
 
 这个文件在E:\Imgseg\libs\opencv\build\x64\vc16\bin里面，**解决办法是给他添加到环境变量或者直接复制到项目里面就行**。修改环境变量后重启一下项目，运行，测试通过，opencv导入成功。
 
-![image-20250905124459452](.\pic\cv_test.png)
+![image-20250905124459452](pic/cv_test.png)
 
 同理导入ncnn。**并添加环境变量！！！，如果下载源代码，自己编译.lib好像就不需要添加bin文件到环境变量**
 
@@ -248,7 +248,7 @@ ncnn.lib
 
 把u2net的python代码用C++实现，建议ai生成然后修下bug，比自己翻译快。把model.bin和model.param复制到这个目录，以及一张测试图片，测试。
 
-![image-20250905130423071](.\pic\ncnn_result.png)
+![image-20250905130423071](pic/ncnn_result.png)
 
 <font size = '5' color = 'red'>整个工程放在ncnntest目录下了。</font>
 
@@ -262,22 +262,22 @@ ncnn.lib
 
 <font size = '5' color = 'red'>这里工程的Name我改成了asnet，应该也不能有数字？</font>
 
-![image-20250905132633591](.\pic\as_select.png)
+![image-20250905132633591](pic/as_select.png)
 
 修改下使用Java，SDK版本和构建工具。这里我项目命名为ncnn4u2net。然后next，finish，创建工程。
 
 save location位置改了，这里没截到。
 <font size = '5' color = 'red'>项目名改成了asnet，路径的u2net也改为了ncnn_unet。save location真实路径：E:\Imgseg\ncnn_net\asforncnn</font>
 
-![image-20250905133740879](.\pic\as_select_1.png)
+![image-20250905133740879](pic/as_select_1.png)
 
 用模拟器测试一下。出现下面界面说明项目创建成功，可以开始下一步了。
 
-![image-20250905140151364](.\pic\mumu_test.png)
+![image-20250905140151364](pic/mumu_test.png)
 
 #### ncnn的安卓移植
 
-![image-20250905150130779](.\pic\to_project.png)
+![image-20250905150130779](pic/to_project.png)
 
 生成的项目默认安卓视图，修改成project视图。
 
@@ -348,17 +348,17 @@ E:\Imgseg\libs\opencv-4.7.0-android-sdk\OpenCV-android-sdk
 
 
 
-![image-20250905160306076](.\pic\import_cv.png)
+![image-20250905160306076](pic/import_cv.png)
 
 这里把：sdk改成opencv，不改也行，后面有些步骤修改一下就行。
 
-![image-20250905160528328](.\pic\import_cv_1.png)
+![image-20250905160528328](pic/import_cv_1.png)
 
 这里报错是正常现象。打开opencv目录下的build.gradle，需要修改里面的compileSdkVersion，minSdkVersion和targetSdkVersion。在任意位置新建一个Android Stdio工程，与刚才建立的区别是选择Empty Views Activity项目而不是Active C++,其他流程全选一样的。找到项目的build.gradle，记下里面的compileSDK，minSDK，targetSdk。在Native C++模板下生成的工程build.gradle没有这些信息。**用完就可以给这个Empty Views Activity项目删除，就看个信息，后面用不到**
 
-![image-20250905161407366](.\pic\build_gradle.png)
+![image-20250905161407366](.pic/build_gradle.png)
 
-![image-20250905162259675](.\pic\empty_project.png)
+![image-20250905162259675](pic/empty_project.png)
 
 **修改compileSdkVersion，minSdkVersion和targetSdkVersion；注释opencv/build.gradle；在android模块下添加命名空间。**
 
@@ -377,9 +377,9 @@ namespace "org.opencv"
 
 运行没错的话就初步成功了。接着导入cv，让代码能调用。file-->Project Structure。Dependencies-->app-->+号-->3 Module Dependency。勾选opencv，确定，然后apply在OK。
 
-![image-20250905172617277](.\pic\import_cv_2.png)
+![image-20250905172617277](pic/import_cv_2.png)
 
-![image-20250905173609787](.\pic\import_cv_3.png)
+![image-20250905173609787](pic/import_cv_3.png)
 
 这里运行会报错，提示aidl错误，给文件加进来
 
@@ -393,7 +393,7 @@ E:\Imgseg\libs\opencv-4.7.0-android-sdk\OpenCV-android-sdk\sdk\java\src\org\open
 
 然后在opencv的build.gradle文件中加入一段
 
-![image-20250905174449685](.\pic\add2cv_build.png)
+![image-20250905174449685](pic/add2cv_build.png)
 
 ```java
 buildFeatures {
@@ -549,7 +549,7 @@ public class MainActivity extends AppCompatActivity {
 
 看看运行效果。**这里给出了归一化的检测结果，0.65*1.6=1.04，原图大概1.11这样。**
 
-![image-20250906195150009](.\pic\run_1.png)
+![image-20250906195150009](pic/run_1.png)
 
 #### 安卓开发
 
@@ -557,7 +557,7 @@ public class MainActivity extends AppCompatActivity {
 
 <font color = 'red'>这个xml设计器类似qt拖拽创建，修改id代码匹配。还算好写,注意一下id就行，通过id绑定,可以修改成代码模式，直接复制过去完成设计，也可以自己设计</font>
 
-![image-20250906200837224](.\pic\code_or_design.png)
+![image-20250906200837224](pic/code_or_design.png)
 
 <font color = 'red' size = '6'>这里用到了@string/，这个在strings.xml修改</font>
 
