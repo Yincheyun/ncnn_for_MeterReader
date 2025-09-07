@@ -38,7 +38,7 @@ ncnn的wiki给了模型转换教程：https://opendeep.wiki/Tencent/ncnn/model-c
 
 <font size = "5" color = 'red'>在写第三节opencv的Andrioid Stdio实现时，由于opencv导入时提示路径有非法字符，这里我说明一下，图片里面路径就不改了，重新截图比较麻烦，我的路径的一切u2net修改为ncnn_net</font>
 
-参考pnnx项目给出的教程：https://github.com/pnnx/pnnx。在项目的transpt目录下是模型转换教程。这里我已经按照ReadMeter项目**提前**创建好了python环境。目录结构如下，在E:\Imgseg\ncnn_unet下创建transpt目录，然后进入transpt目录，在这个目录下进入python环境安装pnnx和查看。
+参考pnnx项目给出的教程：https://github.com/pnnx/pnnx 在项目的transpt目录下是模型转换教程。这里我已经按照ReadMeter项目**提前**创建好了python环境。目录结构如下，在E:\Imgseg\ncnn_unet下创建transpt目录，然后进入transpt目录，在这个目录下进入python环境安装pnnx和查看。
 
 ```bash
 E:.
@@ -55,15 +55,11 @@ pip3 install pnnx
 pip show pnnx
 ```
 
-<<<<<<< HEAD
-![image-20250905094125596](pic/install_pnnx.png)
-=======
-![image-20250905094125596](pic\install_pnnx.png)
->>>>>>> c9dd0dc0beca1b607d7f2635030a3606c3d28c77
+![install_pnnx](pic/install_pnnx.png)
 
 目录结构和transpt.py代码如下：
 
-![image-20250905095859727](pic/catalog.png)
+![catalog](pic/catalog.png)
 
 ```python
 #转换代码
@@ -95,7 +91,7 @@ pnnx ./model.pt inputshape=[1,3,416,416]
 
 结果如下：
 
-![image-20250905101118058](pic/trans_result.png)
+![trans_result](pic/trans_result.png)
 
 - 重命名一下（可选）
 
@@ -103,7 +99,7 @@ pnnx ./model.pt inputshape=[1,3,416,416]
 
 #### ncnn
 
-**ncnn框架：https://github.com/Tencent/ncnn**进入项目的relase下载，这里下两个版本，下面的opencv也是。一个x86的windows版本的，一个android-shared版本的。也可以直接下载源代码自己编译。需要x86的windows版本是因为u2net网络预处理和后向处理都是pyton调用opencv实现的，但是移植到手机上需要用java调用c++实现，所以下一步是windows下的c++实现。**(linux也行，应该差不多，后面有空补一下ncnn在x86-linux下交叉编译arm-linux的项目)**
+**ncnn框架：https://github.com/Tencent/ncnn **进入项目的relase下载，这里下两个版本，下面的opencv也是。一个x86的windows版本的，一个android-shared版本的。也可以直接下载源代码自己编译。需要x86的windows版本是因为u2net网络预处理和后向处理都是pyton调用opencv实现的，但是移植到手机上需要用java调用c++实现，所以下一步是windows下的c++实现。(linux也行，应该差不多，后面有空补一下ncnn在x86-linux下交叉编译arm-linux的项目)
 
 下载这俩然后解压。
 
@@ -121,11 +117,11 @@ ncnn-20250503-android-vulkan-shared.zip
 
 **opencv官网：https://opencv.org/releases/**
 
-![image-20250905104328925](pic/download_cv.png)
+![download_cv](pic/download_cv.png)
 
 下载后是这俩文件，一个解压一个安装，记下路径就行
 
-![image-20250905110512854](pic/cv.png)
+![cv](pic/cv.png)
 
 我的路径：
 
@@ -167,19 +163,19 @@ vs2022在ncnntest目录创建工程。然后添加上一步得到的ncnn-windows
 
 选择视图-->其他窗口-->属性管理器
 
-![image-20250905113206506](.\pic\vs2022_lib.png)
+![vs2022_lib](pic/vs2022_lib.png)
 
 在属性管理器选择Release | x64，右键，添加新项目属性表。
 
-![image-20250905113625649](.\pic\Property_Manager.png)
+![Property_Manager](pic/Property_Manager.png)
 
 新建一个opencv属性表和ncnn属性表。（也可以变成一个，但是有的项目可以不需要opencv的，所以做环境拆分）**创建时下面有个路径选择，记住！！！方便以后复用（也有可能再也不用QAQ）**
 
-![image-20250905114447875](pic/Add_Property.png)
+![Add_Property](pic/Add_Property.png)
 
 双击opencv_windows属性表，或者右键-->属性进入这个页面。
 
-![image-20250905123548382](pic/cv_include.png)
+![cv_include](pic/cv_include.png)
 
 添加的路径如下：
 
@@ -191,7 +187,7 @@ E:\Imgseg\libs\opencv\build\include
 E:\Imgseg\libs\opencv\build\x64\vc16\lib
 ```
 
-![image-20250905122909263](pic/cv_include_input.png)
+![cv_include_input](pic/cv_include_input.png)
 
 ```bash
 #附加依赖项
@@ -231,11 +227,11 @@ int main() {
 
 运行时提示会报错。
 
-![image-20250905124200670](pic/err.png)
+![err](pic/err.png)
 
 这个文件在E:\Imgseg\libs\opencv\build\x64\vc16\bin里面，**解决办法是给他添加到环境变量或者直接复制到项目里面就行**。修改环境变量后重启一下项目，运行，测试通过，opencv导入成功。
 
-![image-20250905124459452](pic/cv_test.png)
+![cv_test](pic/cv_test.png)
 
 同理导入ncnn。**并添加环境变量！！！，如果下载源代码，自己编译.lib好像就不需要添加bin文件到环境变量**
 
@@ -273,15 +269,15 @@ ncnn.lib
 save location位置改了，这里没截到。
 <font size = '5' color = 'red'>项目名改成了asnet，路径的u2net也改为了ncnn_unet。save location真实路径：E:\Imgseg\ncnn_net\asforncnn</font>
 
-![image-20250905133740879](pic/as_select_1.png)
+![as_select_1](pic/as_select_1.png)
 
 用模拟器测试一下。出现下面界面说明项目创建成功，可以开始下一步了。
 
-![image-20250905140151364](pic/mumu_test.png)
+![mumu_test](pic/mumu_test.png)
 
 #### ncnn的安卓移植
 
-![image-20250905150130779](pic/to_project.png)
+![to_project](pic/to_project.png)
 
 生成的项目默认安卓视图，修改成project视图。
 
@@ -352,17 +348,17 @@ E:\Imgseg\libs\opencv-4.7.0-android-sdk\OpenCV-android-sdk
 
 
 
-![image-20250905160306076](pic/import_cv.png)
+![import_cv](pic/import_cv.png)
 
 这里把：sdk改成opencv，不改也行，后面有些步骤修改一下就行。
 
-![image-20250905160528328](pic/import_cv_1.png)
+![import_cv_1](pic/import_cv_1.png)
 
 这里报错是正常现象。打开opencv目录下的build.gradle，需要修改里面的compileSdkVersion，minSdkVersion和targetSdkVersion。在任意位置新建一个Android Stdio工程，与刚才建立的区别是选择Empty Views Activity项目而不是Active C++,其他流程全选一样的。找到项目的build.gradle，记下里面的compileSDK，minSDK，targetSdk。在Native C++模板下生成的工程build.gradle没有这些信息。**用完就可以给这个Empty Views Activity项目删除，就看个信息，后面用不到**
 
-![image-20250905161407366](.pic/build_gradle.png)
+![build_gradle](.pic/build_gradle.png)
 
-![image-20250905162259675](pic/empty_project.png)
+![empty_project](pic/empty_project.png)
 
 **修改compileSdkVersion，minSdkVersion和targetSdkVersion；注释opencv/build.gradle；在android模块下添加命名空间。**
 
@@ -381,9 +377,9 @@ namespace "org.opencv"
 
 运行没错的话就初步成功了。接着导入cv，让代码能调用。file-->Project Structure。Dependencies-->app-->+号-->3 Module Dependency。勾选opencv，确定，然后apply在OK。
 
-![image-20250905172617277](pic/import_cv_2.png)
+![import_cv_2](pic/import_cv_2.png)
 
-![image-20250905173609787](pic/import_cv_3.png)
+![import_cv_3](pic/import_cv_3.png)
 
 这里运行会报错，提示aidl错误，给文件加进来
 
@@ -397,7 +393,7 @@ E:\Imgseg\libs\opencv-4.7.0-android-sdk\OpenCV-android-sdk\sdk\java\src\org\open
 
 然后在opencv的build.gradle文件中加入一段
 
-![image-20250905174449685](pic/add2cv_build.png)
+![add2cv_build](pic/add2cv_build.png)
 
 ```java
 buildFeatures {
@@ -553,7 +549,7 @@ public class MainActivity extends AppCompatActivity {
 
 看看运行效果。**这里给出了归一化的检测结果，0.65*1.6=1.04，原图大概1.11这样。**
 
-![image-20250906195150009](pic/run_1.png)
+![run_1](pic/run_1.png)
 
 #### 安卓开发
 
@@ -561,7 +557,7 @@ public class MainActivity extends AppCompatActivity {
 
 <font color = 'red'>这个xml设计器类似qt拖拽创建，修改id代码匹配。还算好写,注意一下id就行，通过id绑定,可以修改成代码模式，直接复制过去完成设计，也可以自己设计</font>
 
-![image-20250906200837224](pic/code_or_design.png)
+![code_or_design](pic/code_or_design.png)
 
 <font color = 'red' size = '6'>这里用到了@string/，这个在strings.xml修改</font>
 
@@ -664,7 +660,7 @@ detect.setEnabled(false);
 
 <font color = 'red' size = '5'>监听函数和整体实现就放工程里面了，完结撒花！！！</font>
 
-<font color = 'blue' size = '5'>上个忧郁蓝调。同门说上个项目要求30M以内的apk，这个项目光模型和参数就80M了，生成的apk200+了，不过目前只是一个demo，演示时不用管大小。后面如果接项目了真实去做，只能祝愿看我这个教程的学弟学妹好运了。思路大概是先给模型改小，做个轻量化的模型，然后Android stdio好像有个功能可以优化没用到的代码，比如这个项目的opencv就是做了一个图片的腐蚀操作，如果不行就给cv库去掉，只保留需要的核心代码直接写项目里把。</font>
+<font color = 'blue' size = '5'>同门说上个项目要求30M以内的apk，这个项目光模型和参数就80M了，生成的apk200+了，不过目前只是一个demo，演示时不用管大小。后面如果接项目了真实去做，只能祝愿看我这个教程的学弟学妹好运了。思路大概是先给模型改小，做个轻量化的模型，然后Android stdio好像有个功能可以优化没用到的代码，比如这个项目的opencv就是做了一个图片的腐蚀操作，如果不行就给cv库去掉，只保留需要的核心代码直接写项目里把。</font>
 
 
 
